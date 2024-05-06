@@ -23,5 +23,4 @@ class Torneo extends Model
         'imagen'
     ];
 
-    use HasFactory;
 }

@@ -29,5 +29,4 @@ class Tenista extends Model
 
     ];
 
-    use HasFactory;
 }
