@@ -28,6 +28,9 @@ class TenistaTableSeeder extends Seeder
             'mejor_ranking' => 1,
             'victorias' => 1000,
             'derrotas' => 200,
+            'edad' => 35,
+            'win_rate' => 83,
+            'imagen' => 'nadal.jpg'
         ]);
 
         Tenista::create([
@@ -45,6 +48,9 @@ class TenistaTableSeeder extends Seeder
             'mejor_ranking' => 1,
             'victorias' => 1200,
             'derrotas' => 300,
+            'edad' => 40,
+            'win_rate' => 80,
+            'imagen' => 'federer.jpg'
         ]);
     }
 }

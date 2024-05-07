@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('ubicacion');
-            $table->Modo('modo');
-            $table->Categoria('categoria');
-            $table->Superficie('superficie');
+            $table->enum('modo', ['INDIVIDUAL', 'DOBLES', 'AMBOS']);
+            $table->enum('categoria', ['ATP_250', 'ATP_500', 'ATP_1000']);
+            $table->enum('superficie', ['HIERBA','ARCILLA', 'DURA']);
             $table->integer('entradas_individual');
             $table->integer('entradas_dobles');
             $table->integer('premio');

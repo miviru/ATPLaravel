@@ -13,19 +13,20 @@ class TorneoTableSeeder extends Seeder
      */
     public function run()
     {
-      Torneo::create([
-        'nombre' => 'Master 100 Madrid',
-        'ubicacion' => 'Madrid, España',
-        'modo' => 'AMBOS',
-        'categoria' => 'ATP_1000',
-        'superficie' => 'ARCILLA',
-        'entradas_individual' => 128,
-        'entradas_dobles' => 64,
-        'premio' => 34000000,
-        'puntos' => 1000,
-        'fecha_inicio' => '2021-06-28',
-        'fecha_fin' => '2021-07-11',
-      ]);
+        Torneo::create([
+            'nombre' => 'Master 100 Madrid',
+            'ubicacion' => 'Madrid, España',
+            'modo' => 'AMBOS',
+            'categoria' => 'ATP_1000',
+            'superficie' => 'ARCILLA',
+            'entradas_individual' => 128,
+            'entradas_dobles' => 64,
+            'premio' => 34000000,
+            'puntos' => 1000,
+            'fecha_inicio' => '2021-06-28',
+            'fecha_fin' => '2021-07-11',
+            'imagen' => 'madrid.jpg'
+        ]);
 
         Torneo::create([
             'nombre' => 'Master 1000 Roma',
@@ -39,5 +40,7 @@ class TorneoTableSeeder extends Seeder
             'puntos' => 1000,
             'fecha_inicio' => '2021-05-09',
             'fecha_fin' => '2021-05-16',
+            'imagen' => 'roma.jpg'
         ]);
+    }
 }

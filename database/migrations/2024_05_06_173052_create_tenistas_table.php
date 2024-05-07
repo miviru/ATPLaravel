@@ -20,8 +20,8 @@ return new class extends Migration
             $table->double('altura');
             $table->double('peso');
             $table->integer('profesional_desde');
-            $table->Mano('mano');
-            $table->Reves('reves');
+            $table->enum('mano', ['DIESTRO', 'ZURDO']);
+            $table->enum('reves', ['UNA_MANO', 'DOS_MANOS']);
             $table->string('entrenador');
             $table->integer('ganancias');
             $table->integer('mejor_ranking');

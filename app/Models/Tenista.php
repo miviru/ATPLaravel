@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tenista extends Model
@@ -23,7 +22,7 @@ class Tenista extends Model
         'mejor_ranking',
         'victorias',
         'derrotas',
-        'edad',
+//        'edad',
         'win_rate',
         'imagen'
 
