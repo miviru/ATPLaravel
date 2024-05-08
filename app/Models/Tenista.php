@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tenista extends Model
 {
@@ -17,15 +18,30 @@ class Tenista extends Model
         'profesional_desde',
         'mano',
         'reves',
+        'modo',
         'entrenador',
         'ganancias',
         'mejor_ranking',
         'victorias',
         'derrotas',
-//        'edad',
+        'edad',
         'win_rate',
-        'imagen'
-
+        'imagen',
+        'isDeleted'
     ];
+
+    protected $hidden = [
+        'isDeleted',
+    ];
+
+    protected $casts = [
+        'isDeleted' => 'boolean',
+    ];
+
+    //    Realcion OneToMany
+    public function inscripcion(): HasMany
+    {
+        return $this->hasMany(Inscripcion::class);
+    }
 
 }

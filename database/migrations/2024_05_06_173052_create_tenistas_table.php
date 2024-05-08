@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('profesional_desde');
             $table->enum('mano', ['DIESTRO', 'ZURDO']);
             $table->enum('reves', ['UNA_MANO', 'DOS_MANOS']);
+            $table->enum('modo', ['INDIVIDUAL', 'DOBLES', 'AMBOS']);
             $table->string('entrenador');
             $table->integer('ganancias');
             $table->integer('mejor_ranking');

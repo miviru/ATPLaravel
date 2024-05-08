@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('torneos', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->id('id_secundario')->unique()->autoIncrement();
             $table->string('nombre');
             $table->string('ubicacion');
             $table->enum('modo', ['INDIVIDUAL', 'DOBLES', 'AMBOS']);
-            $table->enum('categoria', ['ATP_250', 'ATP_500', 'ATP_1000']);
+            $table->enum('categoria', ['ATP_250', 'ATP_500', 'MASTERS_1000']);
             $table->enum('superficie', ['HIERBA','ARCILLA', 'DURA']);
             $table->integer('entradas_individual');
             $table->integer('entradas_dobles');

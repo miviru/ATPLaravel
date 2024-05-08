@@ -23,6 +23,7 @@ class TenistaTableSeeder extends Seeder
             'profesional_desde' => 2001,
             'mano' => 'ZURDO',
             'reves' => 'DOS_MANOS',
+            'modo' => 'INDIVIDUAL',
             'entrenador' => 'Carlos Moya',
             'ganancias' => 123000000,
             'mejor_ranking' => 1,
@@ -30,7 +31,7 @@ class TenistaTableSeeder extends Seeder
             'derrotas' => 200,
             'edad' => 35,
             'win_rate' => 83,
-            'imagen' => 'nadal.jpg'
+            'imagen' => 'nadal.jpg',
         ]);
 
         Tenista::create([
@@ -43,6 +44,7 @@ class TenistaTableSeeder extends Seeder
             'profesional_desde' => 1998,
             'mano' => 'DIESTRO',
             'reves' => 'UNA_MANO',
+            'modo' => 'INDIVIDUAL',
             'entrenador' => 'Ivan Ljubicic',
             'ganancias' => 129000000,
             'mejor_ranking' => 1,
@@ -50,7 +52,7 @@ class TenistaTableSeeder extends Seeder
             'derrotas' => 300,
             'edad' => 40,
             'win_rate' => 80,
-            'imagen' => 'federer.jpg'
+            'imagen' => 'federer.jpg',
         ]);
     }
 }

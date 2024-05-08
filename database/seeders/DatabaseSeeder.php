@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(TorneoTableSeeder::class);
         $this->call(TenistaTableSeeder::class);
+        $this->call(InscripcionTableSeeder::class);
     }
 }
