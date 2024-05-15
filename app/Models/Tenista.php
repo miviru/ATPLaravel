@@ -39,6 +39,28 @@ class Tenista extends Model
         'isDeleted' => 'boolean',
     ];
 
+    public function getEdad() {
+
+        $fecha_actual = now();
+        $fechaNacimiento = \Carbon\Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento);
+        $edad = $fechaNacimiento->diffInYears(now());
+        $edad = (int)$edad;
+
+        return $edad;
+
+    }
+
+    public function getWinRate()
+    {
+
+        $victorias = $this->victorias;
+        $derrotas = $this->derrotas;
+        $win_rate = ($victorias / ($victorias + $derrotas)) * 100;
+        $win_rate = (int)$win_rate;
+
+        return $win_rate;
+    }
+
     //    Realcion OneToMany
     public function inscripcion(): HasMany
     {

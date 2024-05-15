@@ -28,11 +28,11 @@
                     <dt class="col-sm-3">Fecha Nacimiento:</dt>
                     <dd class="col-sm-9">{{ $tenista->fecha_nacimiento }}</dd>
                     <dt class="col-sm-3">Edad:</dt>
-                    <dd class="col-sm-9">{{ $tenista->edad }}</dd>
+                    <dd class="col-sm-9">{{ $tenista->getEdad() }}</dd>
                     <dt class="col-sm-3">Altura:</dt>
-                    <dd class="col-sm-9">{{ $tenista->altura }}</dd>
+                    <dd class="col-sm-9">{{ $tenista->altura }} m</dd>
                     <dt class="col-sm-3">Peso:</dt>
-                    <dd class="col-sm-9">{{ $tenista->peso }}</dd>
+                    <dd class="col-sm-9">{{ $tenista->peso }} kg</dd>
                     <dt class="col-sm-3">Profesional desde:</dt>
                     <dd class="col-sm-9">{{ $tenista->profesional_desde }}</dd>
                     <dt class="col-sm-3">Mano:</dt>
@@ -44,7 +44,7 @@
                     <dt class="col-sm-3">Entrenador:</dt>
                     <dd class="col-sm-9">{{ $tenista->entrenador }}</dd>
                     <dt class="col-sm-3">Ganancias:</dt>
-                    <dd class="col-sm-9">{{ $tenista->ganancias }}</dd>
+                    <dd class="col-sm-9">{{ $tenista->ganancias }} $</dd>
                     <dt class="col-sm-3">Mejor Ranking:</dt>
                     <dd class="col-sm-9">{{ $tenista->mejor_ranking }}</dd>
                     <dt class="col-sm-3">Victorias:</dt>
@@ -52,7 +52,7 @@
                     <dt class="col-sm-3">Derrotas:</dt>
                     <dd class="col-sm-9">{{ $tenista->derrotas }}</dd>
                     <dt class="col-sm-3">Win-rate:</dt>
-                    <dd class="col-sm-9">{{ $tenista->win_rate }}</dd>
+                    <dd class="col-sm-9">{{ $tenista->getWinRate() }} %</dd>
                 </dl>
             </div>
         </div>
