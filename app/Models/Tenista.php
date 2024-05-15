@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tenista extends Model
 {
+    public static string $IMAGE_DEFAULT = 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg';
 
     protected $fillable = [
         'puntos',

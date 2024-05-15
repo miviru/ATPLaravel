@@ -54,5 +54,26 @@ class TenistaTableSeeder extends Seeder
             'win_rate' => 80,
             'imagen' => 'federer.jpg',
         ]);
+
+        Tenista::create([
+            'puntos'=> 80,
+            'nombre' => 'Novak Djokovic',
+            'pais' => 'Serbia',
+            'fecha_nacimiento' => '1987-05-22',
+            'altura' => 188,
+            'peso' => 80,
+            'profesional_desde' => 2003,
+            'mano' => 'DIESTRO',
+            'reves' => 'DOS_MANOS',
+            'modo' => 'INDIVIDUAL',
+            'entrenador' => 'Marian Vajda',
+            'ganancias' => 147000000,
+            'mejor_ranking' => 1,
+            'victorias' => 900,
+            'derrotas' => 200,
+            'edad' => 34,
+            'win_rate' => 82,
+            'imagen' => 'djokovic.jpg',
+        ]);
     }
 }

@@ -1,5 +1,5 @@
 <footer>
-    <div class="container-fluid bg-secondary bg-opacity-25">
+    <div class="container-fluid bg-secondary bg-opacity-25 mt-3">
         <div class="row">
             <div class="col-md-2">
                 <h5>ATP Laravel</h5>

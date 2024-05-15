@@ -3,9 +3,7 @@
 use App\Http\Controllers\TenistaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', [TenistaController::class,'indexPrincipal']) -> name('indexPrincipal');
 
 Route::group(['prefix' => 'tenistas'], function () {
     //Todos los tenistas
@@ -23,3 +21,4 @@ Route::group(['prefix' => 'tenistas'], function () {
     //Eliminar un tenista
     Route::delete('/{id}', [TenistaController::class,'destroy']) -> name('tenistas.destroy');
 });
+
