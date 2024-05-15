@@ -6,7 +6,7 @@
 
 @section ('content')
     <div class="container-fluid">
-        <div class="row bg-secondary bg-opacity-50">
+        <div class="row bg-secondary">
             <div class="col-md-12">
                 <h1>Tenistas</h1>
             </div>
@@ -16,7 +16,7 @@
     <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-md-4 mt-5">
-                <div class="card bg-black text-light" style="width: 18rem;">
+                <div class="card bg-black text-light border-primary" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Nuevo Tenista</h5>
                         <a href="{{ route('tenistas.create') }}" class="btn btn-outline-success text-white btn-lg">Crear Nuevo</a>
@@ -25,8 +25,8 @@
             </div>
 
             @foreach($tenistas as $tenista)
-                <div class="col-md-4">
-                    <div class="card bg-black text-light" style="width: 18rem;">
+                <div class="col-md-4 mt-3">
+                    <div class="card bg-black border-primary text-light" style="width: 18rem;">
                         <img class="card-img" src="{{ $tenista->imagen }}" alt="Card_img">
                         <div class="card-body">
                             <h5 class="card-title">{{ $tenista->nombre }}</h5>
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-10"></div>
             <div class="form-group col-md-2 mt-3">
-                <a class="btn btn-outline-secondary mt-4" href="{{ route('indexPrincipal') }}">Volver</a>
+                <a class="btn btn-outline-secondary text-white mt-4" href="{{ route('indexPrincipal') }}">Volver</a>
             </div>
         </div>
     </div>

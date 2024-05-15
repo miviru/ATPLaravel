@@ -31,7 +31,7 @@ class TenistaTableSeeder extends Seeder
             'derrotas' => 200,
             'edad' => 35,
             'win_rate' => 83,
-            'imagen' => 'nadal.jpg',
+            'imagen' => 'https://www.atptour.com/-/media/alias/player-gladiator-headshot/n409',
         ]);
 
         Tenista::create([
@@ -52,7 +52,7 @@ class TenistaTableSeeder extends Seeder
             'derrotas' => 300,
             'edad' => 40,
             'win_rate' => 80,
-            'imagen' => 'federer.jpg',
+            'imagen' => 'https://www.atptour.com/-/media/alias/player-gladiator-headshot/f324',
         ]);
 
         Tenista::create([
@@ -73,7 +73,7 @@ class TenistaTableSeeder extends Seeder
             'derrotas' => 200,
             'edad' => 34,
             'win_rate' => 82,
-            'imagen' => 'djokovic.jpg',
+            'imagen' => 'https://www.atptour.com/-/media/alias/player-gladiator-headshot/d643',
         ]);
     }
 }
