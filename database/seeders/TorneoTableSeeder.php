@@ -25,7 +25,7 @@ class TorneoTableSeeder extends Seeder
             'puntos' => 1000,
             'fecha_inicio' => '2021-06-28',
             'fecha_fin' => '2021-07-11',
-            'imagen' => 'madrid.jpg',
+            'imagen' => 'https://www.atptour.com/-/media/images/atp-tournaments/tournament-images/madrid_tournimage_2019_night.jpg',
         ]);
 
         Torneo::create([
@@ -40,7 +40,7 @@ class TorneoTableSeeder extends Seeder
             'puntos' => 1000,
             'fecha_inicio' => '2021-05-09',
             'fecha_fin' => '2021-05-16',
-            'imagen' => 'roma.jpg',
+            'imagen' => 'https://www.atptour.com/-/media/images/news/2022/06/10/14/28/rome-tournament-profile.jpg',
         ]);
     }
 }

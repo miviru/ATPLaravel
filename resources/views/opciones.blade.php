@@ -15,7 +15,7 @@
                     <img class="card-img" src="https://www.atptour.com/-/media/images/news/2024/04/16/20/20/madrid-venue-2023.jpg" alt="Card_img">
                     <div class="card-img-overlay d-flex justify-content-center align-items-center">
                         <div>
-                            <a href="#" class="btn btn-outline-primary text-white btn-lg">Torneos</a>
+                            <a href="{{ route('torneos.index') }}" class="btn btn-outline-primary text-white btn-lg">Torneos</a>
                         </div>
                     </div>
                 </div>

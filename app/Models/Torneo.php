@@ -10,6 +10,9 @@ class Torneo extends Model
 {
     use HasUuids;
 
+    public static string $IMAGE_DEFAULT = 'https://www.palco23.com/files/2020/19_redaccion/competiciones/tenis/atp/atp-tour-federacion-espa%C3%B1ola-728.jpg';
+
+
     protected $fillable = [
         'id',
         'id_secundario',
