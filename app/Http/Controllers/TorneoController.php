@@ -90,10 +90,9 @@ class TorneoController extends Controller
         }
         try {
             $torneo->delete();
-            return redirect()->route('torneos.index');
+            return redirect()->route('torneos.index')->with('success', 'Torneo borrado exitosamente.');
         } catch (Exception $e) {
-            flash('Error al borrar el Torneo' . $e->getMessage())->error()->important();
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Error al borrar el torneo: ' . $e->getMessage());
         }
     }
 }

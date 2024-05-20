@@ -12,6 +12,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Mostrar mensajes flash -->
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="container-fluid text-white">
         <form action="{{ route("tenistas.store") }}" method="POST"  enctype="multipart/form-data">
             @csrf

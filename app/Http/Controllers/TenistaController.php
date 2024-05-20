@@ -5,33 +5,36 @@ namespace App\Http\Controllers;
 use App\Models\Tenista;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
+
 
 class TenistaController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
         $tenistas = Tenista::all();
-        return view('tenistas.index') -> with('tenistas', $tenistas);
+        return view('tenistas.index')->with('tenistas', $tenistas);
 
     }
 
-    public function indexPrincipal() {
+    public function indexPrincipal()
+    {
 
         return view('indexPrincipal');
 
     }
 
-    public function create() {
+    public function create()
+    {
 
         return view('tenistas.create');
 
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
-        $request -> validate([
+        $request->validate([
             'puntos' => 'required|integer',
             'nombre' => 'required|string',
             'pais' => 'required|string',
@@ -54,35 +57,36 @@ class TenistaController extends Controller
             $tenista->win_rate = 50;
             $tenista->imagen = 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg';
             $tenista->save();
-            return redirect()->route('tenistas.index');
+            return redirect()->route('tenistas.index')->with('success', 'Tenista creado exitosamente.');
         } catch (Exception $e) {
-            flash('Error al crear el Producto' . $e->getMessage())->error()->important();
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Error al crear el tenista: ' . $e->getMessage());
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
 
         $tenista = Tenista::find($id);
-        return view('tenistas.show') -> with('tenista', $tenista);
+        return view('tenistas.show')->with('tenista', $tenista);
 
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
 
         $tenista = Tenista::find($id);
-        return view('tenistas.edit') -> with('tenista', $tenista);
+        return view('tenistas.edit')->with('tenista', $tenista);
 
     }
 
     public function update(Request $request, $id)
     {
         $tenista = Tenista::find($id);
-        if(!$tenista) {
+        if (!$tenista) {
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
         }
 
-         $validateDate = $request -> validate([
+        $validateDate = $request->validate([
             'puntos' => 'integer',
             'altura' => 'numeric',
             'peso' => 'numeric',
@@ -97,24 +101,31 @@ class TenistaController extends Controller
         ]);
         try {
             $tenista->update($validateDate);
-            return redirect()->route('tenistas.index');
+            return redirect()->route('tenistas.index')->with('success', 'Tenista actualizado exitosamente.');
         } catch (Exception $e) {
-            flash('Error al actualizar el Producto' . $e->getMessage())->error()->important();
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Error al actualizar el Tenista: ' . $e->getMessage());
         }
 
 
     }
-    public  function getTenistas($id) {
+
+    public function getTenistas($id)
+    {
         return Tenista::find($id);
     }
 
-    public function destroy($id) {
-
+    public function destroy($id)
+    {
         $tenista = Tenista::find($id);
-        $tenista->delete();
-        return redirect()->route('tenistas.index')->with('success', 'Tenista eliminado correctamente');
+        if (!$tenista) {
+            return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
+        }
+        try {
+            $tenista->delete();
+            return redirect()->route('tenistas.index')->with('success', 'Tenista eliminado correctamente');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error al eliminar el Tenista: ' . $e->getMessage());
+        }
 
     }
-
 }
