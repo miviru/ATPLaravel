@@ -122,7 +122,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text w-25 bg-secondary bg-opacity-50 text-white" id="imagen">Imagen:</span>
                         </div>
-                        <input class="form-control" id="imagen" name="imagen" type="file" value="{{ $torneo->imagen}}">
+                        <input class="form-control" id="imagen" name="imagen" type="file">
                     </div>
                 </div>
                 <div class="row">

@@ -31,8 +31,7 @@ class TenistaController extends Controller
 
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $request->validate([
             'puntos' => 'required|integer',
@@ -50,12 +49,18 @@ class TenistaController extends Controller
             'mejor_ranking' => 'required|integer',
             'victorias' => 'required|integer',
             'derrotas' => 'required|integer',
+            'imagen' => 'required|image',
         ]);
         try {
             $tenista = new Tenista($request->all());
             $tenista->edad = 20;
             $tenista->win_rate = 50;
-            $tenista->imagen = 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg';
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->storeAs('tenistas', $request->file('imagen')->getClientOriginalName(), 'public');
+                $tenista->imagen = $imagenPath;
+            } else {
+                $tenista->imagen = Tenista::$IMAGE_DEFAULT;
+            }
             $tenista->save();
             return redirect()->route('tenistas.index')->with('success', 'Tenista creado exitosamente.');
         } catch (Exception $e) {
@@ -85,8 +90,7 @@ class TenistaController extends Controller
         if (!$tenista) {
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
         }
-
-        $validateDate = $request->validate([
+        $request->validate([
             'puntos' => 'integer',
             'altura' => 'numeric',
             'peso' => 'numeric',
@@ -97,16 +101,20 @@ class TenistaController extends Controller
             'ganancias' => 'integer',
             'mejor_ranking' => 'integer',
             'victorias' => 'integer',
-            'derrotas' => 'integer'
+            'derrotas' => 'integer',
+            'imagen' => 'image',
         ]);
         try {
-            $tenista->update($validateDate);
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->storeAs('tenistas', $request->file('imagen')->getClientOriginalName(), 'public');
+                $tenista->imagen = $imagenPath;
+            }
+            $tenista->update($request->except('imagen'));
+
             return redirect()->route('tenistas.index')->with('success', 'Tenista actualizado exitosamente.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al actualizar el Tenista: ' . $e->getMessage());
         }
-
-
     }
 
     public function getTenistas($id)

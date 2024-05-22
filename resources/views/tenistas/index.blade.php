@@ -27,8 +27,12 @@
             @foreach($tenistas as $tenista)
                 <div class="col-md-4 mt-3">
                     <div class="card bg-black border-primary text-light" style="width: 18rem;">
-                        <img class="card-img" src="{{ $tenista->imagen }}" alt="Card_img">
-                        <div class="card-body">
+                        @if (filter_var($tenista->imagen, FILTER_VALIDATE_URL))
+                            <img class="card-img" src="{{ $tenista->imagen }}" alt="Card_img">
+                        @else
+                            <img class="card-img" src="{{ asset('storage/' . $tenista->imagen) }}" alt="Card_img">
+                        @endif
+                            <div class="card-body">
                             <h5 class="card-title">{{ $tenista->nombre }}</h5>
                             <p class="card-text"><b>Puntos: </b>{{ $tenista->puntos }}</p>
                             <a href="{{ route('tenistas.show', $tenista->id) }}" class="btn btn-outline-primary text-white btn-lg">Ver más</a>

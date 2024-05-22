@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="background-image: url('{{ $torneo->imagen }}'); background-size: cover; background-position: center;">
+    <div class="container-fluid" style="background-image: url('{{ filter_var($torneo->imagen, FILTER_VALIDATE_URL) ? $torneo->imagen : asset('storage/' . $torneo->imagen) }}'); background-size: cover; background-position: center;">
         <div class="row mt-4">
             <div class="col-md-6">
                 <dl class="datos bg-secondary bg-opacity-75 text-white">

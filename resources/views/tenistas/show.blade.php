@@ -15,7 +15,11 @@
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="col-md-6 mt-5">
-                <img src="https://www.mundodeportivo.com/files/content_image_mobile_filter/uploads/2020/10/11/60e7e6c377f87.jpeg">
+                @if (filter_var($tenista->imagen, FILTER_VALIDATE_URL))
+                    <img class="card-img" src="{{ $tenista->imagen }}" alt="Card_img">
+                @else
+                    <img class="card-img" src="{{ asset('storage/' . $tenista->imagen) }}" alt="Card_img">
+                @endif
             </div>
             <div class="col-md-6">
                 <dl class="datos bg-secondary bg-opacity-75 text-white">

@@ -36,10 +36,16 @@ class TorneoController extends Controller
             'puntos' => 'required|integer',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
+            'imagen' => 'required|image',
         ]);
         try {
             $torneo = new Torneo($request->all());
-            $torneo->imagen = 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg';
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->storeAs('torneos', $request->file('imagen')->getClientOriginalName(), 'public');
+                $torneo->imagen = $imagenPath;
+            } else {
+                $torneo->imagen = Torneo::$IMAGE_DEFAULT;
+            }
             $torneo->save();
             return redirect()->route('torneos.index')->with('success', 'Torneo creado exitosamente.');
         } catch (Exception $e) {
@@ -74,9 +80,14 @@ class TorneoController extends Controller
             'puntos' => 'integer',
             'fecha_inicio' => 'date',
             'fecha_fin' => 'date',
+            'imagen' => 'file',
         ]);
         try {
-            $torneo->update($request->all());
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->storeAs('torneos', $request->file('imagen')->getClientOriginalName(), 'public');
+                $torneo->imagen = $imagenPath;
+            }
+            $torneo->update($request->except('imagen'));
             return redirect()->route('torneos.index')->with('success', 'Torneo actualizado exitosamente.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al actualizar el torneo: ' . $e->getMessage());
