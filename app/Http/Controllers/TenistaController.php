@@ -84,8 +84,7 @@ class TenistaController extends Controller
 
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $tenista = Tenista::find($id);
         if (!$tenista) {
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
@@ -102,7 +101,7 @@ class TenistaController extends Controller
             'mejor_ranking' => 'integer',
             'victorias' => 'integer',
             'derrotas' => 'integer',
-            'imagen' => 'image',
+            'imagen' => 'file',
         ]);
         try {
             if ($request->hasFile('imagen')) {

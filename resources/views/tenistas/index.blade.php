@@ -42,7 +42,8 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
                             </form>
-                        </div>
+                                <a href="" class="btn btn-outline-info text-white btn-lg">Participaciones</a>
+                            </div>
                     </div>
                 </div>
             @endforeach

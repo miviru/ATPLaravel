@@ -27,7 +27,7 @@
     @endif
 
     <div class="container-fluid">
-        <form action="{{ route("tenistas.update", $tenista -> id) }}" method="post">
+        <form action="{{ route("tenistas.update", $tenista -> id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
