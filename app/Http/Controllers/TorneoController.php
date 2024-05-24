@@ -10,7 +10,7 @@ class TorneoController extends Controller
 {
     public function index(Request $request) {
         try {
-            $torneos = Torneo::search($request->search)->orderBy('id', 'desc')->paginate(10);
+            $torneos = Torneo::search($request->search)->orderBy('id', 'desc')->paginate(2);
             return view('torneos.index')->with('torneos', $torneos);
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al obtener los torneos: ' . $e->getMessage());
