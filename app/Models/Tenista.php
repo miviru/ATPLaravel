@@ -67,4 +67,10 @@ class Tenista extends Model
         return $this->hasMany(Inscripcion::class);
     }
 
+
+//    Scope
+    public function scopeSearch($query, $search) {
+        return $query->whereRaw('LOWER(nombre) like ?', ['%' . strtolower($search) . '%'])
+            ->orWhereRaw('LOWER(pais) like ?', ['%' . strtolower($search) . '%']);
+    }
 }

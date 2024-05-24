@@ -46,4 +46,12 @@ class Torneo extends Model
         return $this->hasMany(Inscripcion::class);
     }
 
+//    Scope
+    public function scopeSearch($query, $search) {
+        return $query->whereRaw('LOWER(nombre) like ?', ['%' . strtolower($search) . '%'])
+            ->orWhereRaw('LOWER(ubicacion) like ?', ['%' . strtolower($search) . '%'])
+            ->orWhereRaw('LOWER(modo) like ?', ['%' . strtolower($search) . '%'])
+            ->orWhereRaw('LOWER(categoria) like ?', ['%' . strtolower($search) . '%'])
+            ->orWhereRaw('LOWER(superficie) like ?', ['%' . strtolower($search) . '%']);
+    }
 }

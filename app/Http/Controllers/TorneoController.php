@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class TorneoController extends Controller
 {
-    public function index() {
-        $torneos = Torneo::all();
-        return view('torneos.index') -> with('torneos', $torneos);
+    public function index(Request $request) {
+        try {
+            $torneos = Torneo::search($request->search)->orderBy('id', 'desc')->paginate(10);
+            return view('torneos.index')->with('torneos', $torneos);
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error al obtener los torneos: ' . $e->getMessage());
+        }
     }
 
     public function indexPrincipal() {

@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class TenistaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        try {
+            $tenistas = Tenista::search($request->search)->orderBy('puntos', 'desc')->paginate(10);
+            return view('tenistas.index')->with('tenistas', $tenistas);
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error al obtener los tenistas: ' . $e->getMessage());
 
-        $tenistas = Tenista::all();
-        return view('tenistas.index')->with('tenistas', $tenistas);
+        }
 
     }
 
