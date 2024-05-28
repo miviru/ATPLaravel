@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tenistas', function (Blueprint $table) {
             $table->id();
+            $table->integer('ranking');
             $table->integer('puntos');
             $table->string('nombre');
             $table->string('pais');

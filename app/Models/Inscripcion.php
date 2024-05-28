@@ -9,14 +9,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Inscripcion extends Model
 {
     protected $fillable = [
-        'torneo_id_secundario',
+        'torneo_id',
         'tenista_id',
         'puntos',
         'ganancias',
+        'entradas_individual',
+        'entradas_dobles',
+        'participantes',
         'isDeleted'
     ];
 
     protected $hidden = [
+        'torneo_id',
+        'tenista_id',
         'isDeleted',
     ];
 

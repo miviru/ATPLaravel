@@ -14,6 +14,7 @@ class TenistaTableSeeder extends Seeder
     public function run()
     {
         Tenista::create([
+            'ranking'=> 1,
             'puntos'=> 100,
             'nombre' => 'Rafael Nadal',
             'pais' => 'España',
@@ -35,6 +36,7 @@ class TenistaTableSeeder extends Seeder
         ]);
 
         Tenista::create([
+            'ranking'=> 2,
             'puntos'=> 90,
             'nombre' => 'Roger Federer',
             'pais' => 'Suiza',
@@ -56,6 +58,7 @@ class TenistaTableSeeder extends Seeder
         ]);
 
         Tenista::create([
+            'ranking'=> 3,
             'puntos'=> 80,
             'nombre' => 'Novak Djokovic',
             'pais' => 'Serbia',

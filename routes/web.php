@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\TenistaController;
 use App\Http\Controllers\TorneoController;
 use Illuminate\Support\Facades\Route;
@@ -39,4 +40,7 @@ Route::group(['prefix' => 'torneos'], function () {
     //Eliminar un torneo
     Route::delete('/{id}', [TorneoController::class,'destroy']) -> name('torneos.destroy');
 });
+
+Route::post('/torneos/{id}', [InscripcionController::class,'participarTorneo']) -> name('torneos.participar');
+Route::get('/torneos/{id}/inscripciones', [InscripcionController::class,'verInscripciones']) -> name('torneos.inscripciones');
 

@@ -10,6 +10,7 @@ class Tenista extends Model
     public static string $IMAGE_DEFAULT = 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg';
 
     protected $fillable = [
+        'ranking',
         'puntos',
         'nombre',
         'pais',
@@ -59,6 +60,14 @@ class Tenista extends Model
         $win_rate = (int)$win_rate;
 
         return $win_rate;
+    }
+
+    //calcular ranking
+    public function getRanking() {
+//calcular ranking en funcion de los puntos, el que mas tiene es el 1
+        $ranking = Tenista::where('puntos', '>', $this->puntos)->count();
+        $ranking = $ranking + 1;
+        return $ranking;
     }
 
     //    Realcion OneToMany

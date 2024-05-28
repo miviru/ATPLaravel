@@ -33,7 +33,6 @@ class Torneo extends Model
 
     protected $hidden = [
         'isDeleted',
-        'id'
     ];
 
     protected $casts = [
@@ -41,7 +40,7 @@ class Torneo extends Model
     ];
 
 //    Realcion OneToMany
-    public function inscripcion(): HasMany
+    public function inscripciones(): HasMany
     {
         return $this->hasMany(Inscripcion::class);
     }

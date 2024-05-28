@@ -34,12 +34,12 @@ class TorneoController extends Controller
             'modo' => 'required|in:INDIVIDUAL,DOBLES,AMBOS',
             'categoria' => 'required|in:ATP_250,ATP_500,MASTERS_1000',
             'superficie' => 'required|in:DURA,HIERBA,ARCILLA',
-            'entradas_individual' => 'required|integer',
-            'entradas_dobles' => 'required|integer',
-            'premio' => 'required|integer',
-            'puntos' => 'required|integer',
+            'entradas_individual' => 'required|integer|min:0',
+            'entradas_dobles' => 'required|integer|min:0',
+            'premio' => 'required|integer|min:0',
+            'puntos' => 'required|integer|min:0',
             'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
             'imagen' => 'required|image',
         ]);
         try {
@@ -57,10 +57,17 @@ class TorneoController extends Controller
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $torneo = Torneo::find($id);
-        return view('torneos.show') -> with('torneo', $torneo);
+
+        if (!$torneo) {
+            return redirect()->route('torneos.index')->with('error', 'Torneo not found.');
+        }
+
+        return view('torneos.show')->with('torneo', $torneo);
     }
+
 
     public function edit($id) {
         $torneo = Torneo::find($id);
@@ -78,12 +85,12 @@ class TorneoController extends Controller
             'modo' => 'in:INDIVIDUAL,DOBLES,AMBOS',
             'categoria' => 'in:ATP_250,ATP_500,MASTERS_1000',
             'superficie' => 'in:DURA,HIERBA,ARCILLA',
-            'entradas_individual' => 'integer',
-            'entradas_dobles' => 'integer',
-            'premio' => 'integer',
-            'puntos' => 'integer',
+            'entradas_individual' => 'integer|min:0',
+            'entradas_dobles' => 'integer|min:0',
+            'premio' => 'integer|min:0',
+            'puntos' => 'integer|min:0',
             'fecha_inicio' => 'date',
-            'fecha_fin' => 'date',
+            'fecha_fin' => 'date|after:fecha_inicio',
             'imagen' => 'file',
         ]);
         try {

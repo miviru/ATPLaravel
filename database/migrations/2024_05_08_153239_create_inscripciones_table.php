@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('inscripcions', function (Blueprint $table) {
             $table->id();
-//            $table->foreignUuid('torneo_id_secundario')->constrained();
-            $table->foreignId('tenista_id')->constrained();
+            $table->foreignUuid('torneo_id')->references('id')->on('torneos');
+            $table->foreignId('tenista_id')->references('id')->on('tenistas');
             $table->integer('puntos');
             $table->integer('ganancias');
             $table->timestamps();

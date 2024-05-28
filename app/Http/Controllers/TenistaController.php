@@ -38,21 +38,21 @@ class TenistaController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'puntos' => 'required|integer',
+            'puntos' => 'required|integer|min:0',
             'nombre' => 'required|string',
             'pais' => 'required|string',
-            'fecha_nacimiento' => 'required|date',
-            'altura' => 'required|numeric',
-            'peso' => 'required|numeric',
+            'fecha_nacimiento' => 'required|date|before:today',
+            'altura' => 'required|numeric|min:0',
+            'peso' => 'required|numeric|min:0',
             'profesional_desde' => 'required|integer',
             'mano' => 'required|in:DIESTRO,ZURDO',
             'reves' => 'required|in:UNA_MANO,DOS_MANOS',
             'modo' => 'required|in:INDIVIDUAL,DOBLES,AMBOS',
             'entrenador' => 'required|string',
-            'ganancias' => 'required|integer',
-            'mejor_ranking' => 'required|integer',
-            'victorias' => 'required|integer',
-            'derrotas' => 'required|integer',
+            'ganancias' => 'required|integer|min:0',
+            'mejor_ranking' => 'required|integer|min:1',
+            'victorias' => 'required|integer|min:0',
+            'derrotas' => 'required|integer|min:0',
             'imagen' => 'required|image',
         ]);
         try {
@@ -94,17 +94,17 @@ class TenistaController extends Controller
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
         }
         $request->validate([
-            'puntos' => 'integer',
-            'altura' => 'numeric',
-            'peso' => 'numeric',
+            'puntos' => 'integer|min:0',
+            'altura' => 'numeric|min:0',
+            'peso' => 'numeric|min:0',
             'mano' => 'in:DIESTRO,ZURDO',
             'reves' => 'in:UNA_MANO,DOS_MANOS',
             'modo' => 'in:INDIVIDUAL,DOBLES,AMBOS',
             'entrenador' => 'string',
-            'ganancias' => 'integer',
-            'mejor_ranking' => 'integer',
-            'victorias' => 'integer',
-            'derrotas' => 'integer',
+            'ganancias' => 'integer|min:0',
+            'mejor_ranking' => 'integer|min:1',
+            'victorias' => 'integer|min:0',
+            'derrotas' => 'integer|min:0',
             'imagen' => 'file',
         ]);
         try {

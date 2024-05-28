@@ -56,6 +56,7 @@
                             <img class="card-img" src="{{ asset('storage/' . $tenista->imagen) }}" alt="Card_img">
                         @endif
                             <div class="card-body">
+                                <h3 class="card-title">#{{ $tenista->getRanking() }}</h3>
                             <h5 class="card-title">{{ $tenista->nombre }}</h5>
                             <p class="card-text"><b>Puntos: </b>{{ $tenista->puntos }}</p>
                             <a href="{{ route('tenistas.show', $tenista->id) }}" class="btn btn-outline-primary text-white btn-lg">Ver más</a>

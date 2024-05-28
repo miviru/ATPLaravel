@@ -23,6 +23,8 @@
             </div>
             <div class="col-md-6">
                 <dl class="datos bg-secondary bg-opacity-75 text-white">
+                    <dt class="col-sm-3">Ranking:</dt>
+                    <dd class="col-sm-9">{{ $tenista->getRanking() }}</dd>
                     <dt class="col-sm-3">Puntos:</dt>
                     <dd class="col-sm-9">{{ $tenista->puntos }}</dd>
                     <dt class="col-sm-3">Nombre:</dt>
