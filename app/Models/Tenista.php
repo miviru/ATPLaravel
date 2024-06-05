@@ -42,7 +42,6 @@ class Tenista extends Model
 
     public function getEdad() {
 
-        $fecha_actual = now();
         $fechaNacimiento = \Carbon\Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento);
         $edad = $fechaNacimiento->diffInYears(now());
         $edad = (int)$edad;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscripcion;
 use App\Models\Torneo;
-use Illuminate\Http\Request;
 
 class InscripcionController extends Controller
 {
@@ -48,6 +48,15 @@ class InscripcionController extends Controller
         ]);
     }
 
+    public function verTorneosInscritos($tenista_id) {
+        $inscripciones = Inscripcion::where('tenista_id', $tenista_id)->with('torneo')->get();
+
+        return view('tenistas.torneos')->with([
+            'inscripciones' => $inscripciones,
+            'tenista_id' => $tenista_id
+        ]);
+    }
+
     public function sumarPuntos($torneo_id, $tenista_id, $puntos) {
         $inscripcion = Inscripcion::where('torneo_id', $torneo_id)
             ->where('tenista_id', $tenista_id)
@@ -76,6 +85,28 @@ class InscripcionController extends Controller
         $inscripcion->save();
 
         return redirect()->route('torneos.index')->with('success', 'Ganancias sumadas exitosamente.');
+    }
+
+    public function eliminarInscripcion($torneo_id, $tenista_id) {
+        \Log::info('Request received', ['torneo_id' => $torneo_id, 'tenista_id' => $tenista_id]);
+        $torneo = Torneo::find($torneo_id);
+
+        if (!$torneo) {
+            return redirect()->back()->with('error', 'Torneo no encontrado.');
+        }
+
+        $participantes = $torneo->participantes ?? [];
+
+        if (!in_array($tenista_id, $participantes)) {
+            return redirect()->back()->with('info', 'El tenista no está inscrito en este torneo.');
+        }
+
+        $participantes = array_diff($participantes, [$tenista_id]);
+        $torneo->participantes = $participantes;
+
+        $torneo->save();
+
+        return redirect()->route('torneos.index')->with('success', 'Inscripción eliminada exitosamente.');
     }
 }
 

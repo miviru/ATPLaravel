@@ -60,13 +60,17 @@
                             <h5 class="card-title">{{ $tenista->nombre }}</h5>
                             <p class="card-text"><b>Puntos: </b>{{ $tenista->puntos }}</p>
                             <a href="{{ route('tenistas.show', $tenista->id) }}" class="btn btn-outline-primary text-white btn-lg">Ver más</a>
-                            <a href="{{ route('tenistas.edit', $tenista->id) }}" class="btn btn-outline-warning text-white btn-lg">Editar</a>
-                            <form action="{{ route('tenistas.destroy', $tenista->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
-                            </form>
-                                <a href="" class="btn btn-outline-info text-white btn-lg">Participaciones</a>
+                                @auth()
+                                    @if(Auth::user()->role === 'admin')
+                                        <a href="{{ route('tenistas.edit', $tenista->id) }}" class="btn btn-outline-warning text-white btn-lg">Editar</a>
+                                        <form action="{{ route('tenistas.destroy', $tenista->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
+                                        </form>
+                                    @endif
+                                @endauth
+                                <a href="{{ route('tenistas.torneos', $tenista->id) }}" class="btn btn-outline-info text-white btn-lg">Participaciones</a>
                             </div>
                     </div>
                 </div>

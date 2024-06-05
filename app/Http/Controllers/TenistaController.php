@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tenista;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -54,11 +55,13 @@ class TenistaController extends Controller
             'victorias' => 'required|integer|min:0',
             'derrotas' => 'required|integer|min:0',
             'imagen' => 'required|image',
+            'ranking' => 'integer',
         ]);
         try {
             $tenista = new Tenista($request->all());
             $tenista->edad = 20;
             $tenista->win_rate = 50;
+            $tenista->ranking = 1;
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->storeAs('tenistas', $request->file('imagen')->getClientOriginalName(), 'public');
                 $tenista->imagen = $imagenPath;
@@ -72,13 +75,16 @@ class TenistaController extends Controller
         }
     }
 
-    public function show($id)
-    {
-
+    public function show($id) {
         $tenista = Tenista::find($id);
-        return view('tenistas.show')->with('tenista', $tenista);
 
+        if (!$tenista) {
+            return redirect()->back()->with('error', 'Tenista no encontrado.');
+        }
+
+        return view('tenistas.show', ['tenista' => $tenista]);
     }
+
 
     public function edit($id)
     {
@@ -125,8 +131,7 @@ class TenistaController extends Controller
         return Tenista::find($id);
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $tenista = Tenista::find($id);
         if (!$tenista) {
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
@@ -137,6 +142,15 @@ class TenistaController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al eliminar el Tenista: ' . $e->getMessage());
         }
-
     }
+
+    public function descargarPDF($id) {
+        $tenista = Tenista::find($id);
+        if (!$tenista) {
+            return redirect()->back()->with('error', 'Tenista no encontrado.');
+        }
+        $pdf = PDF::loadView('tenistas.pdf', ['tenista' => $tenista]);
+        return $pdf->stream('tenista.pdf');
+    }
+
 }

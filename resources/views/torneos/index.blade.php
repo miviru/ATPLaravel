@@ -57,14 +57,18 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $torneo->nombre }}</h5>
                             <a href="{{ route('torneos.show', $torneo->id) }}" class="btn btn-outline-primary text-white btn-lg">Ver más</a>
-                            <a href="{{ route('torneos.edit', $torneo->id) }}" class="btn btn-outline-warning text-white btn-lg">Editar</a>
-                            <form action="{{ route('torneos.destroy', $torneo->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
-                            </form>
+                            @auth()
+                                @if(Auth::user()->role === 'admin')
+                                    <a href="{{ route('torneos.edit', $torneo->id) }}" class="btn btn-outline-warning text-white btn-lg">Editar</a>
+                                    <form action="{{ route('torneos.destroy', $torneo->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
+                                    </form>
+                                    <a href="{{ route('torneos.participar', $torneo->id) }}" class="btn btn-outline-info text-white btn-lg">Participar</a>
+                                @endif
+                            @endauth
                             <a href="{{ route('torneos.inscripciones', $torneo->id) }}" class="btn btn-outline-info text-white btn-lg">Participantes</a>
-                            <a href="{{ route('torneos.participar', $torneo->id) }}" class="btn btn-outline-info text-white btn-lg">Participar</a>
 
                         </div>
                     </div>
