@@ -8,6 +8,9 @@
 3. [Test](#Test)
 4. [Futuras mejoras](#Futuras-mejoras)
 5. [Proyecto](#Proyecto)
+6. [Contacto](#Contacto)
+7. [Autor](#Autor)
+   
 
 
 ## Introducción
@@ -92,6 +95,17 @@ Esta es la web para iniciar sesión.
 
 ![image](https://github.com/miviru/ATPLaravel/assets/132077764/f4012a97-342e-4bbf-94cb-9eccebd9feb7)
 Y esta es la del registro de usuario.
+
+
+## Contatco
+
+Si tienen alguna duda, sugerencia este es mi correo de contacto => miguel.vicario@alumno.iesluisvives.org 
+
+Muchas gracias!!
+
+## Autor
+
+Este proyecto ha sido desarrollado por Miguel Vicario Rubio, alumno de 2ºDAW del IES Luis Vives, Proyecto de la asignatura Desarrollo Web en entornos Servidor.
 
 
 
