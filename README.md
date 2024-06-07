@@ -58,7 +58,7 @@ Aquí podemos apreciar el modelo entidad-relación. El proyecto se divide en tre
 Por parte de torneo, tiene unos atributos para conocer todos los datos necesarios que se pide a un torneo, y los métodos básicos de un CRUD.
 La inscripción es la parte que hace de nexo entre tenista y torneo. Tiene una relación muchos a uno con las dos partes, (un tenista tiene muchas inscripciones y un torneo tiene muchas inscripciones). Al tener relación con otras clases comparte atributos. Estos son el id del tenista, el id del torneo, los puntos que tiene tanto tenista como el torneo, y las ganancias que reparte el torneo y tiene el tenista. Los métodos son propios. ParticiparTorneo() introduce un tenista en un torneo, VerInscripciones() se utiliza para ver a todos los tenistas que están inscritos en un torneo. VerTorneosInscritos() se utiliza para ver todos los torneos en los que un tenista ha participado. Por último, están los métodos para sumar los puntos y las ganancias a los tenistas en función de la posición que han quedado.
 
-A continuación se van a mostrar distintas vistas de la web para enseñar su forma y explicar su funcionamiento.
+A continuación, se van a mostrar distintas vistas de la web para enseñar su forma y explicar su funcionamiento.
 
 
 
