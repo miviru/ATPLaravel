@@ -1,66 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/ATP_Tour_logo.svg/1200px-ATP_Tour_logo.svg.png" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Índice
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. [Introducción](#Introducción)
+2. [Tecnologías utilizadas](#TecnologíasUtilizadas)
+3. [Test](#Test)
+4. [Futuras mejoras](#FuturasMejoras)
+5. [Proyecto](#Proyecto)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Introducción
 
-## Learning Laravel
+ATP Laravel es una aplicación web que gestiona a los tenistas y a los torneos que forman parte del circuito ATP. Estas gestiones son:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- CRUD Tenistas.
+- CRUD Torneos.
+- Introducir jugadores en los torneos.
+- Eliminar jugadores de los torneos.
+- Ver ranking actual de los tenistas.
+- Gestionar puntos y ganancias de los jugadores que han participado en un torneo.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tecnologías utilizadas
 
-## Laravel Sponsors
+- **[Laravel](https://laravel.com/docs/11.x). Laravel es un framework de código abierto para desarrollar aplicaciones y servivios web con PHP.
+- **[PostgreSQL](https://www.postgresql.org/docs/current/). Es un sistema de gestión de bases de datos relacional orientado a objetos y de código abierto.
+- **[Docker](https://docs.docker.com/build/cloud/). Es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software. Lo usaremos para desplegar la aplicación.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## Test
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Pantallazo del coverage y explicar un poco 
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Futuras mejoras
 
-## Code of Conduct
+- Gestionar ranking femenino WTA y cuadro mixto.
+- Añadir la categoría de Grand Slam en los torneos.
+- Head2Head.
+- Predictor.
+- Enlace a Tennis TV.
+- Ver los resultados en directo.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Proyecto
 
-## Security Vulnerabilities
+### Modelo Entidad-Relación
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![image](https://github.com/miviru/ATPLaravel/assets/132077764/efe67c66-05b0-4458-ad4a-3ca2bb462975)
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aquí podemos apreciar el modelo entidad-relación. El proyecto se divide en tres partes: El tenista, con unos atributos suficientes para poder conocer todos sus datos relevantes y estadísticas. Tiene también unos métodos básicos y típicos de un CRUD además de unos propios. Estos métodos propios son el getEdad(), que consiste en calcular la edad en base de la fecha de nacimiento introducida; el getWinRate(), calcula el porcentaje de victoria con los datos de las victorias y las derrotas; y por último el descargarPDF(), utilizado para exportar los datos en un PDF.
+Por parte de torneo, tiene unos atributos para conocer todos los datos necesarios que se pide a un torneo, y los métodos básicos de un CRUD.
+La inscripción es la parte que hace de nexo entre tenista y torneo. Tiene una relación muchos a un con las dos partes, (un tenista tiene muchas inscripciones y un torneo tiene muchas inscripciones). Al tener relación con otras clases comparte atributos. Estos son el id del tenista, el id del torneo, los puntos que tiene tanto tenista como el torneo, y las ganancias que reparte el torneo y tiene el tenista. Los métodos son propios. ParticiparTorneo() introduce un tenista en un torneo, VerInscripciones() se utiliza para ver a todos los tenistas que están inscritos en un torneo. VerTorneosInscritos() se utiliza para ver todos los torneos en los que un tenista ha participado. Por último están los métodos para sumar los puntos y las ganancias a los tenistas en función de la posición que han quedado.
+
+A continuación se van a mostrar distintas vistas de la web para enseñar su forma y explicar su funcionamiento.
+
+
+
+
+
+
+
+
