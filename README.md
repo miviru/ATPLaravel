@@ -22,7 +22,7 @@ ATP Laravel es una aplicación web que gestiona a los tenistas y a los torneos q
 - Gestionar puntos y ganancias de los jugadores que han participado en un torneo.
 
 
-## Tecnologías utilizadas
+## TecnologíasUtilizadas
 
 - **[Laravel](https://laravel.com/docs/11.x). Laravel es un framework de código abierto para desarrollar aplicaciones y servivios web con PHP.
 - **[PostgreSQL](https://www.postgresql.org/docs/current/). Es un sistema de gestión de bases de datos relacional orientado a objetos y de código abierto.
@@ -34,7 +34,7 @@ ATP Laravel es una aplicación web que gestiona a los tenistas y a los torneos q
 Pantallazo del coverage y explicar un poco 
 
 
-## Futuras mejoras
+## FuturasMejoras
 
 - Gestionar ranking femenino WTA y cuadro mixto.
 - Añadir la categoría de Grand Slam en los torneos.
