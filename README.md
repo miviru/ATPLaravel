@@ -97,7 +97,7 @@ Esta es la web para iniciar sesión.
 Y esta es la del registro de usuario.
 
 
-## Contatco
+## Contacto
 
 Si tienen alguna duda, sugerencia este es mi correo de contacto => miguel.vicario@alumno.iesluisvives.org 
 
