@@ -24,10 +24,10 @@ ATP Laravel es una aplicación web que gestiona a los tenistas y a los torneos q
 
 ## Tecnologías utilizadas
 
-- **[Laravel](https://laravel.com/docs/11.x). Laravel es un framework de código abierto para desarrollar aplicaciones y servivios web con PHP.
-- **[PostgreSQL](https://www.postgresql.org/docs/current/). Es un sistema de gestión de bases de datos relacional orientado a objetos y de código abierto.
-- **[Docker](https://docs.docker.com/build/cloud/). Es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software. Lo usaremos para desplegar la aplicación.
-- **[Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/). Es un conjunto de herramientas de interfaz potente y repleto de funciones. Se utiliza para dar formato y mejorar las vistas.
+- **[Laravel]**(https://laravel.com/docs/11.x). Laravel es un framework de código abierto para desarrollar aplicaciones y servivios web con PHP.
+- **[PostgreSQL]**(https://www.postgresql.org/docs/current/). Es un sistema de gestión de bases de datos relacional orientado a objetos y de código abierto.
+- **[Docker]**(https://docs.docker.com/build/cloud/). Es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software. Lo usaremos para desplegar la aplicación.
+- **[Bootstrap 5]**(https://getbootstrap.com/docs/5.0/getting-started/introduction/). Es un conjunto de herramientas de interfaz potente y repleto de funciones. Se utiliza para dar formato y mejorar las vistas.
 
 
 ## Test
