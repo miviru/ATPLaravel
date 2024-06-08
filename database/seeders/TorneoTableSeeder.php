@@ -25,7 +25,8 @@ class TorneoTableSeeder extends Seeder
             'fecha_inicio' => '2021-06-28',
             'fecha_fin' => '2021-07-11',
             'imagen' => 'https://www.atptour.com/-/media/images/atp-tournaments/tournament-images/madrid_tournimage_2019_night.jpg',
-        ]);
+            'logo' => 'https://mutuamadridopen.com/wp-content/uploads/2022/12/logo23-09.png'
+            ]);
 
         Torneo::create([
             'nombre' => 'Master 1000 Roma',
@@ -40,6 +41,7 @@ class TorneoTableSeeder extends Seeder
             'fecha_inicio' => '2021-05-09',
             'fecha_fin' => '2021-05-16',
             'imagen' => 'https://www.atptour.com/-/media/images/news/2022/06/10/14/28/rome-tournament-profile.jpg',
-        ]);
+            'logo' => 'https://upload.wikimedia.org/wikipedia/fr/thumb/c/c2/Logo_Masters_Rome.svg/941px-Logo_Masters_Rome.svg.png'
+            ]);
     }
 }

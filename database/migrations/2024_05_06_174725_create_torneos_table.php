@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('imagen');
+            $table->string('logo');
             $table->timestamps();
         });
     }

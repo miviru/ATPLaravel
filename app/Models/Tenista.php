@@ -81,4 +81,11 @@ class Tenista extends Model
         return $query->whereRaw('LOWER(nombre) like ?', ['%' . strtolower($search) . '%'])
             ->orWhereRaw('LOWER(pais) like ?', ['%' . strtolower($search) . '%']);
     }
+
+    //    Scope para buscar tenistas no inscritos en un torneo
+    public function scopeTenistasNoInscritos($query, $torneoId) {
+        return $query->whereDoesntHave('inscripcion', function ($query) use ($torneoId) {
+            $query->where('torneo_id', $torneoId);
+        });
+    }
 }

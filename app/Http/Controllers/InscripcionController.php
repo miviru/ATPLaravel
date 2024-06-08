@@ -3,34 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inscripcion;
+use App\Models\Tenista;
 use App\Models\Torneo;
 
-class InscripcionController extends Controller
-{
-    public function participarTorneo($torneo_id, $tenista_id) {
-        $torneo = Torneo::find($torneo_id);
-
+class InscripcionController extends Controller {
+    public function participarTorneo($torneo_id) {
+        $torneo = Torneo::with('inscripciones.tenista')->find($torneo_id);
         if (!$torneo) {
             return redirect()->back()->with('error', 'Torneo no encontrado.');
         }
 
-        $participantes = $torneo->participantes ?? [];
+        $tenistasNoInscritos = Tenista::tenistasNoInscritos($torneo_id)->get();
 
-        if (in_array($tenista_id, $participantes)) {
-            return redirect()->back()->with('info', 'El tenista ya está inscrito en este torneo.');
+        return view('torneos.participar')->with([
+            'torneo' => $torneo,
+            'tenistasNoInscritos' => $tenistasNoInscritos
+        ]);
+    }
+
+    public function inscribirTenista($torneo_id, $tenista_id) {
+        $torneo = Torneo::find($torneo_id);
+        if (!$torneo) {
+            return redirect()->back()->with('error', 'Torneo no encontrado.');
         }
 
-        $numeroMaximoEntradas = $torneo->modo === 'INDIVIDUAL' ? $torneo->entradas_individual : $torneo->entradas_dobles;
-        if (count($participantes) >= $numeroMaximoEntradas) {
-            return redirect()->back()->with('error', 'No hay más espacio disponible para este torneo.');
+        $tenista = Tenista::find($tenista_id);
+        if (!$tenista) {
+            return redirect()->back()->with('error', 'Tenista no encontrado.');
         }
 
-        $participantes[] = $tenista_id;
-        $torneo->participantes = $participantes;
+        $inscripcion = new Inscripcion();
+        $inscripcion->torneo_id = $torneo->id;
+        $inscripcion->tenista_id = $tenista->id;
+        $inscripcion->puntos = 0;
+        $inscripcion->ganancias = 0;
+        $inscripcion->save();
 
-        $torneo->save();
-
-        return redirect()->route('torneos.index')->with('success', 'Inscripción exitosa.');
+        return redirect()->back()->with('success', 'Tenista inscrito correctamente.');
     }
 
     public function verInscripciones($torneo_id) {
@@ -87,26 +96,31 @@ class InscripcionController extends Controller
         return redirect()->route('torneos.index')->with('success', 'Ganancias sumadas exitosamente.');
     }
 
-    public function eliminarInscripcion($torneo_id, $tenista_id) {
-        \Log::info('Request received', ['torneo_id' => $torneo_id, 'tenista_id' => $tenista_id]);
-        $torneo = Torneo::find($torneo_id);
+    public function eliminarInscripcion($torneo_id, $id)
+    {
+        try {
+            $inscripcion = Inscripcion::findOrFail($id);
+            $torneoId = $inscripcion->torneo_id;
 
-        if (!$torneo) {
-            return redirect()->back()->with('error', 'Torneo no encontrado.');
+            $inscripcion->delete();
+
+            if (!Inscripcion::find($id)) {
+                $inscripciones = Inscripcion::where('torneo_id', $torneoId)->orderBy('puntos', 'desc')->get();
+                $ranking = 1;
+
+                foreach ($inscripciones as $existeInscripcion) {
+                    $existeInscripcion->tenista->ranking = $ranking;
+                    $existeInscripcion->save();
+                }
+
+                return redirect()->back()->with('success', 'Inscripción eliminada exitosamente.');
+            } else {
+                return redirect()->back()->with('error', 'No se pudo eliminar la inscripción.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocurrió un error al eliminar la inscripción: ' . $e->getMessage());
         }
-
-        $participantes = $torneo->participantes ?? [];
-
-        if (!in_array($tenista_id, $participantes)) {
-            return redirect()->back()->with('info', 'El tenista no está inscrito en este torneo.');
-        }
-
-        $participantes = array_diff($participantes, [$tenista_id]);
-        $torneo->participantes = $participantes;
-
-        $torneo->save();
-
-        return redirect()->route('torneos.index')->with('success', 'Inscripción eliminada exitosamente.');
     }
+
 }
 

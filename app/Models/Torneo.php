@@ -28,6 +28,7 @@ class Torneo extends Model
         'fecha_inicio',
         'fecha_fin',
         'imagen',
+        'logo',
         'isDeleted'
     ];
 

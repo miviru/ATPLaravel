@@ -45,7 +45,7 @@ class TenistaController extends Controller
             'fecha_nacimiento' => 'required|date|before:today',
             'altura' => 'required|numeric|min:0',
             'peso' => 'required|numeric|min:0',
-            'profesional_desde' => 'required|integer',
+            'profesional_desde' => 'required|integer|after:fecha_nacimiento',
             'mano' => 'required|in:DIESTRO,ZURDO',
             'reves' => 'required|in:UNA_MANO,DOS_MANOS',
             'modo' => 'required|in:INDIVIDUAL,DOBLES,AMBOS',
@@ -68,6 +68,8 @@ class TenistaController extends Controller
             } else {
                 $tenista->imagen = Tenista::$IMAGE_DEFAULT;
             }
+            $mejor_ranking = Tenista::where('id', $tenista->id)->max('ranking');
+            $tenista->mejor_ranking = $mejor_ranking;
             $tenista->save();
             return redirect()->route('tenistas.index')->with('success', 'Tenista creado exitosamente.');
         } catch (Exception $e) {

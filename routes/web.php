@@ -47,10 +47,13 @@ Route::group(['prefix' => 'torneos'], function () {
     Route::delete('/{id}', [TorneoController::class, 'destroy'])->name('torneos.destroy')->middleware(['auth', AdminVerify::class]);
 });
 
-Route::post('/torneos/{id}/participar', [InscripcionController::class, 'participarTorneo'])->name('torneos.participar');
+//Rutas de inscripciones
+Route::get('/torneos/{id}/participar', [InscripcionController::class, 'participarTorneo'])->name('torneos.participar');
 Route::get('/torneos/{id}/inscripciones', [InscripcionController::class, 'verInscripciones'])->name('torneos.inscripciones');
 Route::get('/tenistas/{id}/torneos', [InscripcionController::class, 'verTorneosInscritos'])->name('tenistas.torneos');
-Route::delete('/torneos/{torneo_id}/tenistas/{tenista_id}', [InscripcionController::class, 'eliminarInscripcion'])->name('torneos.eliminarParticipante');
+Route::post('/torneos/{torneo_id}/tenistas/{tenista_id}/sumar-puntos', [InscripcionController::class, 'sumarPuntos'])->name('torneos.sumarPuntos');
+Route::delete('/torneos/{torneo_id}/eliminar-inscripcion/{id}', [InscripcionController::class, 'eliminarInscripcion'])->name('torneos.eliminarInscripcion')->middleware('auth', AdminVerify::class);
+Route::post('/torneos/{torneo_id}/inscribir/{tenista_id}', [InscripcionController::class, 'inscribirTenista'])->name('torneos.inscribirTenista');
 
 // Rutas de autenticación, incluyendo logout
 Auth::routes();

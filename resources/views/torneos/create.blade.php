@@ -125,7 +125,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-1 mt-3"></div>
+                <div class="form-group col-md-4 mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text w-25 bg-secondary bg-opacity-50 text-white" id="logo">Logo:</span>
+                    </div>
+                    <input class="form-control" id="logo" name="logo" type="file" required>
+                </div>
                 <div class="form-group col-md-1 mt-3">
                     <button type="submit" class="btn btn-outline-success text-white mt-4">Guardar</button>
                 </div>

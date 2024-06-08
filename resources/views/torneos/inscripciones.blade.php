@@ -27,12 +27,21 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h3 class="card-title text-white">{{ $inscripcion->tenista->nombre }}</h3>
-                                        <form action="{{ route('torneos.eliminarParticipante', ['torneo_id' => $torneo->id, 'tenista_id' => $inscripcion->tenista_id]) }}" method="POST">
+                                        <form action="{{ route('torneos.eliminarInscripcion', ['torneo_id' => $torneo->id, 'id' => $inscripcion->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar</button>
+                                            <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar Inscripción</button>
                                         </form>
                                         <a href="{{ route('tenistas.show', $inscripcion->tenista_id) }}" class="btn btn-outline-primary text-white btn-lg">Ver datos tenista</a>
+                                        <form action="{{ route('torneos.sumarPuntos', ['torneo_id' => $torneo->id, 'tenista_id' => $inscripcion->tenista_id, 'puntos' => $inscripcion->tenista->puntos]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a href="#" class="btn btn-outline-warning text-white btn-lg" onclick="event.preventDefault(); this.previousElementSibling.submit();">Ganador</a>
+
+                                        <a href="{{ route('torneos.sumarPuntos', ['torneo_id' => $torneo->id, 'tenista_id' => $inscripcion->tenista_id, 'puntos' => $inscripcion->tenista->puntos]) }}" class="btn btn-outline-warning text-white btn-lg">Ganador</a>
+
+                                        <a href="" class="btn btn-outline-secondary border-white text-white btn-lg">Finalista</a>
+                                        <a href="" class="btn btn-outline-danger text-white btn-lg">Semifinalista</a>
                                     </div>
                                 </div>
                             </div>

@@ -41,14 +41,21 @@ class TorneoController extends Controller
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date|after:fecha_inicio',
             'imagen' => 'required|image',
+            'logo' => 'required|image',
         ]);
         try {
             $torneo = new Torneo($request->all());
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->storeAs('torneos', $request->file('imagen')->getClientOriginalName(), 'public');
                 $torneo->imagen = $imagenPath;
+
+                if ($request->hasFile('logo')) {
+                    $logoPath = $request->file('logo')->storeAs('torneos', $request->file('logo')->getClientOriginalName(), 'public');
+                    $torneo->logo = $logoPath;
+                }
             } else {
                 $torneo->imagen = Torneo::$IMAGE_DEFAULT;
+                $torneo->logo = Torneo::$IMAGE_DEFAULT;
             }
             $torneo->save();
             return redirect()->route('torneos.index')->with('success', 'Torneo creado exitosamente.');
@@ -79,7 +86,8 @@ class TorneoController extends Controller
         if (!$torneo) {
             return redirect()->route('torneos.index')->with('error', 'Torneo no encontrado');
         }
-        $request -> validate([
+
+        $request->validate([
             'nombre' => 'string',
             'ubicacion' => 'string',
             'modo' => 'in:INDIVIDUAL,DOBLES,AMBOS',
@@ -91,19 +99,29 @@ class TorneoController extends Controller
             'puntos' => 'integer|min:0',
             'fecha_inicio' => 'date',
             'fecha_fin' => 'date|after:fecha_inicio',
-            'imagen' => 'file',
+            'imagen' => 'image',
+            'logo' => 'image',
         ]);
+
         try {
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->storeAs('torneos', $request->file('imagen')->getClientOriginalName(), 'public');
                 $torneo->imagen = $imagenPath;
             }
-            $torneo->update($request->except('imagen'));
+
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->storeAs('torneos', $request->file('logo')->getClientOriginalName(), 'public');
+                $torneo->logo = $logoPath;
+            }
+
+            $torneo->update($request->except(['imagen', 'logo']));
+
             return redirect()->route('torneos.index')->with('success', 'Torneo actualizado exitosamente.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al actualizar el torneo: ' . $e->getMessage());
         }
     }
+
 
     public function destroy($id) {
         $torneo = Torneo::find($id);

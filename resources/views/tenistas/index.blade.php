@@ -38,14 +38,18 @@
     </div>
     <div class="container-fluid mt-5">
         <div class="row">
-            <div class="col-md-4 mt-5">
-                <div class="card bg-black text-light border-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nuevo Tenista</h5>
-                        <a href="{{ route('tenistas.create') }}" class="btn btn-outline-success text-white btn-lg">Crear Nuevo</a>
+            @auth()
+                @if(Auth::user()->role === 'admin')
+                    <div class="col-md-4 mt-5">
+                        <div class="card bg-black text-light border-primary" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Nuevo Tenista</h5>
+                                <a href="{{ route('tenistas.create') }}" class="btn btn-outline-success text-white btn-lg">Crear Nuevo</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                @endif
+            @endauth
 
             @foreach($tenistas as $tenista)
                 <div class="col-md-4 mt-3">
