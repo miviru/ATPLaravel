@@ -90,6 +90,10 @@ Así se ven los datos del torneo, la imagen del torneo se pone de fondo y los da
 ![image](https://github.com/miviru/ATPLaravel/assets/132077764/e72bfd78-2b63-4b07-9fdd-21c3e73b47b3)
 Esta es la lista de los tenistas que participan en ese torneo. El admin cuenta con distintos botones en los que puede eliminar el participante del torneo, sumarle puntos y ganancias en función de la posición en la que quede. El usuario únicamente puede ver los datos del tenista.
 
+![image](https://github.com/miviru/ATPLaravel/assets/132077764/4b80c038-fe2e-423d-a942-92563802a202)
+Aquí se puede ver la lista de tenistas no inscritos, si se da al botón de inscribir desaparecen de esta lista y se introducen en la de tenistas inscritos. Tiene un buscador para facilitar la búsqueda.
+
+
 ![image](https://github.com/miviru/ATPLaravel/assets/132077764/7b0d83b5-9c64-48ae-bd2d-f31591f23c6a)
 Esta es la web para iniciar sesión.
 
