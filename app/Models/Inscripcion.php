@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Inscripcion extends Model
 {
+
+    use HasFactory;
     protected $fillable = [
         'torneo_id',
         'tenista_id',

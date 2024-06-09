@@ -27,7 +27,7 @@ class TenistaFactory extends Factory
             'mejor_ranking' => $this->faker->numberBetween(1, 100),
             'victorias' => $this->faker->numberBetween(0, 100),
             'derrotas' => $this->faker->numberBetween(0, 100),
-            'imagen' => 'tenistas/' . $this->faker->image('public/storage/tenistas', 640, 480, null, false),
+            'imagen' => 'https://brandemia.org/sites/default/files/inline/images/atp_logo_tour.jpg',
         ];
     }
 }

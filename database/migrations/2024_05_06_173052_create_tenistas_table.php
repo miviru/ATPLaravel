@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tenistas', function (Blueprint $table) {
             $table->id();
-            $table->integer('ranking');
+            $table->integer('ranking')->default(1);
             $table->integer('puntos');
             $table->string('nombre');
             $table->string('pais');
@@ -29,8 +29,8 @@ return new class extends Migration
             $table->integer('mejor_ranking');
             $table->integer('victorias');
             $table->integer('derrotas');
-            $table->integer('edad');
-            $table->integer('win_rate');
+            $table->integer('edad')->default(18);
+            $table->integer('win_rate')->default(0);
             $table->string('imagen');
             $table->timestamps();
         });

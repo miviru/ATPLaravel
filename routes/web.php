@@ -51,9 +51,10 @@ Route::group(['prefix' => 'torneos'], function () {
 Route::get('/torneos/{id}/participar', [InscripcionController::class, 'participarTorneo'])->name('torneos.participar');
 Route::get('/torneos/{id}/inscripciones', [InscripcionController::class, 'verInscripciones'])->name('torneos.inscripciones');
 Route::get('/tenistas/{id}/torneos', [InscripcionController::class, 'verTorneosInscritos'])->name('tenistas.torneos');
-Route::post('/torneos/{torneo_id}/tenistas/{tenista_id}/sumar-puntos', [InscripcionController::class, 'sumarPuntos'])->name('torneos.sumarPuntos');
 Route::delete('/torneos/{torneo_id}/eliminar-inscripcion/{id}', [InscripcionController::class, 'eliminarInscripcion'])->name('torneos.eliminarInscripcion')->middleware('auth', AdminVerify::class);
 Route::post('/torneos/{torneo_id}/inscribir/{tenista_id}', [InscripcionController::class, 'inscribirTenista'])->name('torneos.inscribirTenista');
+//ruta para el metodo ganador
+Route::post('/torneos/{torneo_id}/ganador/{id}', [InscripcionController::class, 'ganador'])->name('torneos.ganador')->middleware('auth', AdminVerify::class);
 
 // Rutas de autenticación, incluyendo logout
 Auth::routes();

@@ -19,14 +19,11 @@ class TenistaController extends Controller
             return redirect()->back()->with('error', 'Error al obtener los tenistas: ' . $e->getMessage());
 
         }
-
     }
 
     public function indexPrincipal()
     {
-
         return view('indexPrincipal');
-
     }
 
     public function create()
@@ -68,8 +65,6 @@ class TenistaController extends Controller
             } else {
                 $tenista->imagen = Tenista::$IMAGE_DEFAULT;
             }
-            $mejor_ranking = Tenista::where('id', $tenista->id)->max('ranking');
-            $tenista->mejor_ranking = $mejor_ranking;
             $tenista->save();
             return redirect()->route('tenistas.index')->with('success', 'Tenista creado exitosamente.');
         } catch (Exception $e) {
@@ -96,12 +91,14 @@ class TenistaController extends Controller
 
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $tenista = Tenista::find($id);
         if (!$tenista) {
             return redirect()->route('tenistas.index')->with('error', 'Tenista no encontrado');
         }
-        $request->validate([
+
+        $data = $request->validate([
             'puntos' => 'integer|min:0',
             'altura' => 'numeric|min:0',
             'peso' => 'numeric|min:0',
@@ -115,22 +112,19 @@ class TenistaController extends Controller
             'derrotas' => 'integer|min:0',
             'imagen' => 'file',
         ]);
+
         try {
             if ($request->hasFile('imagen')) {
-                $imagenPath = $request->file('imagen')->storeAs('tenistas', $request->file('imagen')->getClientOriginalName(), 'public');
-                $tenista->imagen = $imagenPath;
+                $imagenPath = $request->file('imagen')->store('tenistas', 'public');
+                $data['imagen'] = $imagenPath;
             }
-            $tenista->update($request->except('imagen'));
+
+            $tenista->update($data);
 
             return redirect()->route('tenistas.index')->with('success', 'Tenista actualizado exitosamente.');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error al actualizar el Tenista: ' . $e->getMessage());
         }
-    }
-
-    public function getTenistas($id)
-    {
-        return Tenista::find($id);
     }
 
     public function destroy($id) {

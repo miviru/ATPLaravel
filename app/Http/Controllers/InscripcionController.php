@@ -66,35 +66,34 @@ class InscripcionController extends Controller {
         ]);
     }
 
-    public function sumarPuntos($torneo_id, $tenista_id, $puntos) {
+    public function ganador($torneo_id, $tenista_id, $puntos, $ganancias) {
+        // Verificar que los puntos y las ganancias sean números
+        if (!is_numeric($puntos) || !is_numeric($ganancias)) {
+            return redirect()->back()->with('error', 'Los puntos y las ganancias deben ser números.');
+        }
+
+        // Buscar la inscripción correspondiente al torneo y tenista
         $inscripcion = Inscripcion::where('torneo_id', $torneo_id)
             ->where('tenista_id', $tenista_id)
             ->first();
 
+        // Si la inscripción no se encuentra, devolver un error
         if (!$inscripcion) {
             return redirect()->back()->with('error', 'Inscripción no encontrada.');
         }
 
-        $inscripcion->puntos += $puntos;
-        $inscripcion->save();
+        // Usar una transacción para asegurar que ambas actualizaciones se realicen de manera atómica
+        DB::transaction(function() use ($inscripcion, $puntos, $ganancias) {
+            $inscripcion->puntos += $puntos;
+            $inscripcion->ganancias += $ganancias;
+            $inscripcion->save();
+        });
 
-        return redirect()->route('torneos.index')->with('success', 'Puntos sumados exitosamente.');
+        // Redirigir a la vista de torneos con un mensaje de éxito
+        return redirect()->route('torneos.index')->with('success', 'Puntos y ganancias sumados exitosamente.');
     }
 
-    public function sumarGanancias($torneo_id, $tenista_id, $ganancias) {
-        $inscripcion = Inscripcion::where('torneo_id_secundario', $torneo_id)
-            ->where('tenista_id', $tenista_id)
-            ->first();
 
-        if (!$inscripcion) {
-            return redirect()->back()->with('error', 'Inscripción no encontrada.');
-        }
-
-        $inscripcion->ganancias += $ganancias;
-        $inscripcion->save();
-
-        return redirect()->route('torneos.index')->with('success', 'Ganancias sumadas exitosamente.');
-    }
 
     public function eliminarInscripcion($torneo_id, $id)
     {

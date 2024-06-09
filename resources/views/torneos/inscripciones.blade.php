@@ -33,13 +33,10 @@
                                             <button type="submit" class="btn btn-outline-danger text-white btn-lg">Eliminar Inscripción</button>
                                         </form>
                                         <a href="{{ route('tenistas.show', $inscripcion->tenista_id) }}" class="btn btn-outline-primary text-white btn-lg">Ver datos tenista</a>
-                                        <form action="{{ route('torneos.sumarPuntos', ['torneo_id' => $torneo->id, 'tenista_id' => $inscripcion->tenista_id, 'puntos' => $inscripcion->tenista->puntos]) }}" method="POST" style="display: none;">
+                                        <form action="" method="POST" style="display: none;">
                                             @csrf
                                         </form>
-                                        <a href="#" class="btn btn-outline-warning text-white btn-lg" onclick="event.preventDefault(); this.previousElementSibling.submit();">Ganador</a>
-
-                                        <a href="{{ route('torneos.sumarPuntos', ['torneo_id' => $torneo->id, 'tenista_id' => $inscripcion->tenista_id, 'puntos' => $inscripcion->tenista->puntos]) }}" class="btn btn-outline-warning text-white btn-lg">Ganador</a>
-
+                                        <a href="#" class="btn btn-outline-warning text-white btn-lg" onclick="event.preventDefault(); document.getElementById('ganadorForm').submit();">Ganador</a>
                                         <a href="" class="btn btn-outline-secondary border-white text-white btn-lg">Finalista</a>
                                         <a href="" class="btn btn-outline-danger text-white btn-lg">Semifinalista</a>
                                     </div>
