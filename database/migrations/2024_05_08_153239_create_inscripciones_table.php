@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignUuid('torneo_id')->references('id')->on('torneos');
             $table->foreignId('tenista_id')->references('id')->on('tenistas');
+            $table->integer('entradas_individual')->nullable();
+            $table->integer('entradas_dobles')->nullable();
             $table->integer('puntos')->default(0);
             $table->integer('ganancias')->default(0);
             $table->timestamps();

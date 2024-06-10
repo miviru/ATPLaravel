@@ -14,13 +14,16 @@ class InscripcionFactory extends Factory
     public function definition()
     {
         return [
-            'torneo_id' => Torneo::factory(),
-            'tenista_id' => Tenista::factory(),
+            'torneo_id' => function () {
+                return Torneo::factory()->create()->id;
+            },
+            'tenista_id' => function () {
+                return Tenista::factory()->create()->id;
+            },
             'puntos' => $this->faker->numberBetween(0, 2000),
             'ganancias' => $this->faker->numberBetween(1000, 50000),
-            'entradas_individual' => $this->faker->numberBetween(0, 1000),
-            'entradas_dobles' => $this->faker->numberBetween(0, 500),
-            'participantes' => $this->faker->numberBetween(1, 32),
+            'entradas_individual' => $this->faker->numberBetween(1, 96),
+            'entradas_dobles' => $this->faker->numberBetween(1, 64),
         ];
     }
 }
