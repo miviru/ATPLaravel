@@ -35,7 +35,9 @@ ATP Laravel es una aplicación web que gestiona a los tenistas y a los torneos q
 
 ## Test
 
-Pantallazo del coverage y explicar un poco 
+![image](https://github.com/miviru/ATPLaravel/assets/132077764/a36d141d-93da-4288-a130-5c2d838d1368)
+
+Aquí podemos ver una foto del coverage de las pruebas. Se ha testeado los controladores tanto de tenistas como de torneos, al igual que los de inscripción y los del home. En la carpeta Auth no se ha testeado nada ya que la autorización la genera automáticamente laravel gracias a un comando y, en teoría, todos esos controladores son correctos y no son necesarios sus pruebas. Resta un poco de porcentaje de coverage pero esa parte también está testeada.
 
 
 ## Futuras mejoras
